@@ -1,0 +1,21 @@
+# Arquivos e pastas gerados pelo Maven
+# Esta é a regra mais importante!
+/target/
+
+# Arquivos de Log
+*.log
+*.log.*
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos gerados por IDEs (Eclipse, IntelliJ, etc)
+.classpath
+.project
+.settings/
+*.iml
+.idea/
+
+# Pasta do VSCode (geralmente não é enviada, a menos que tenha configs úteis)
+.vscode/
