@@ -1,52 +1,65 @@
-package br.com.labvet.service; // Seu pacote
+package br.com.labvet.service;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import br.com.labvet.util.HashSenha; // Usando seu 'HashSenha'
 
-import br.com.labvet.util.HashSenha;
+// Importações do Spring
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
+@Service // 1. Diz ao Spring que esta é uma classe de serviço
 public class FuncionarioService {
 
-    // A URL de conexão é privada
-    private String url = "jdbc:sqlserver://localhost;databaseName=A3CC3S;user=java_user;password=123456;trustServerCertificate=true;";
+    // 2. Pede ao Spring pelo JdbcTemplate
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public FuncionarioService(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     /**
      * Cadastra um novo funcionário no banco de dados.
      * Retorna true se o cadastro foi bem-sucedido, false se falhou.
      */
-    public boolean cadastrarFuncionario(String nome, String crmv, String cargo, String login, String senhaPura) {
+    // Dentro da classe FuncionarioService
+
+        public String cadastrarFuncionario(String nome, String crmv, String cargo, String login, String senhaPura) {
         
-        // 1. Gera o Hash da senha
         String senhaHash = HashSenha.hashPassword(senhaPura);
         
-        // 2. Prepara o SQL
-        String sql = "INSERT INTO Funcionarios (NomeCompleto, CRMV, Cargo, LoginUsuario, SENHA_HASH) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO TBL_FUNCIONARIOS (NOME_COMPLETO, CRMV, Cargo, LOGIN_USUARIO, SENHA_HASH) VALUES (?, ?, ?, ?, ?)";
         
-        // 3. Conecta e executa
-        try (Connection conexao = DriverManager.getConnection(url);
-             PreparedStatement stmt = conexao.prepareStatement(sql)) {
-
-            stmt.setString(1, nome);
-            stmt.setString(2, crmv); // CRMV pode ser nulo se a coluna permitir
-            stmt.setString(3, cargo);
-            stmt.setString(4, login);
-            stmt.setString(5, senhaHash);
-
-            int linhasAfetadas = stmt.executeUpdate();
+        try {
+            int linhasAfetadas = jdbcTemplate.update(
+                sql, 
+                nome, 
+                crmv, 
+                cargo, 
+                login, 
+                senhaHash
+            );
             
-            // Retorna true se pelo menos 1 linha foi inserida
-            return linhasAfetadas > 0;
+            // Se 0 linhas foram afetadas (estranho), retorne um erro.
+            if (linhasAfetadas == 0) {
+                return "Nenhuma linha foi afetada. O cadastro falhou.";
+            }
+            
+            // Se chegou aqui, foi um SUCESSO.
+            return null; 
 
-        } catch (SQLException e) {
-            System.err.println("Erro ao cadastrar funcionário. O Login ou CRMV já pode existir.");
-            e.printStackTrace();
-            return false; // Retorna false em caso de falha
+        } catch (Exception e) {
+            // --- A GRANDE MUDANÇA ESTÁ AQUI ---
+            // Agora, em vez de retornar 'false', nós retornamos a MENSAGEM REAL do erro.
+            System.err.println("Erro de SQL ao cadastrar: " + e.getMessage());
+            
+            // Vamos checar se é um erro de chave duplicada (o que suspeitamos)
+            if (e.getMessage().contains("UNIQUE KEY")) {
+                return "Erro: O Login, CPF ou CRMV informado já existe no banco de dados.";
+            }
+            
+            // Para qualquer outro erro (ex: "coluna não pode ser nula")
+            return "Erro inesperado do banco de dados: " + e.getMessage();
         }
     }
-    
-    // (No futuro, você pode adicionar outros métodos aqui, como...)
-    // public Funcionario buscarFuncionarioPorId(int id) { ... }
-    // public boolean deletarFuncionario(int id) { ... }
 }
