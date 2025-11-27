@@ -1,0 +1,4 @@
+assinatura diferentes de metodos permite que use metodos do mesmo nome = polimorfismo = sobrecarga/herança
+
+metodos (mesmo nome e assinatura) igais em classes diferentes = sobreposiçao
+ 

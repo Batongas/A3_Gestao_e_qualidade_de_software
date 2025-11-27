@@ -1,0 +1,24 @@
+Conceitos de Orientação a Objetos
+
+Atributo = variavel
+
+ - Modulos 
+  .Classes
+   .Definiçao de Objetos 
+
+ Encapsular - transformar todos os atributos da classe em Private
+  .GetAtributo - retorna o valor se for publico 
+   .Metodo de acesso
+
+Modificadores = Set
+
+ - Instanciaçao de Objetos
+     .Aluno (classe) aluno (objeto/atributo) = new (sistema OP, abre memoria Ram) Aluno (Metodo construtor, contém parenteses, deve ter o mesmo nome da classe)
+      .Aluno() - Inicia com 0
+
+    
+ - Main - Apenas na classe de teste
+ - void - vazio, sem retorno do main (set - sem retorno)
+ - args - pode ser qualquer nome
+
+ 

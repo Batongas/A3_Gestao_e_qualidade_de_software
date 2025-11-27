@@ -1,0 +1,44 @@
+Herança
+
+Criar uma classe como uma extenção de outra
+  Classe mãe x Classe filha
+
+EX{ 
+  public class x extends alfabeto
+}
+
+Encapsulamento 
+
+Identificador de acesso
+ private - sem acesso pelas outras classes
+ public - publico para as outras classes
+ protect - publico apenas para a mesma hierarquia
+ default - publico apenas para as classes do mesmo pacote/pasta
+
+
+EXEMPLO
+ 
+ public class Turma{
+   
+    private String nome;
+    
+    public Turma (String nome){ -> construtor
+         this.nome = nome;
+    }
+
+    public String getNome(){ -> de acesso
+        return nome;
+    }
+
+    public void setNome(String Nome){ -> modificador
+        this.nome = nome;
+    }
+}
+
+    public class Aluno extends Turma
+    super (nome) -> roda o construtor da classe pai
+    
+    //THIS = APONTA O ATRIBUTO
+
+    //ATRIBUTO PRIVATO - GET E SET PUBLICO 
+

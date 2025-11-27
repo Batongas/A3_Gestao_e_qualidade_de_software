@@ -1,0 +1,26 @@
+É-UM - Classe filha herda todos os membros da classe pai, mas tambem pode adicionar novos membros ou sobrescrever os membros herdados
+   Em java - "extends"
+
+
+Classe Abstratas - não podem ser instanciadas diretamente 
+ public abstract class
+ 
+alta coesao - classe com tarefas bem definidas, foca em realizar uma única tafera ou connjunto de tarefas relacionadas.
+
+baixo acoplamento - as classes tem pouca dependencia e podem ser alteradas sem afetar o resto
+ex - Carrinho de compras virtuais
+
+herança - revisao
+
+herança simples - uma unica classe pai, unica forma de herança em java
+
+Herança Multipla - multiplos pais 
+public class Cachorro extends Animal, Mamifero
+ {
+}
+
+Deadly Diamond of Death
+duas ou mais classes pais possuem um metodo com mesmo nome, problemas de ambiguidade 
+soluçao = super
+
+
