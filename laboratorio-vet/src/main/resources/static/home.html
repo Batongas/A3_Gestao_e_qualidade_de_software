@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu Principal - LabVet</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/style.css" />
+  
+  <style>
+      /* Ajuste extra para garantir layout dos botões */
+      .menu-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          margin-top: 20px;
+      }
+      .btn-logout {
+          background-color: transparent;
+          border: 1px solid #e74c3c;
+          color: #e74c3c;
+          margin-top: 15px;
+      }
+      .btn-logout:hover {
+          background-color: #e74c3c;
+          color: white;
+      }
+  </style>
+</head>
+<body>
+
+  <div class="page-center">
+    <div class="card-vet" style="max-width: 400px;"> 
+      
+      <div class="card-header-vet">
+        <i class="fa-solid fa-user-doctor"></i>
+        <h2 id="bemvindo">Olá, Usuário</h2>
+        <p style="color: #7f8c8d; font-size: 0.9rem;" id="cargo-badge">Carregando...</p>
+      </div>
+
+      <div class="menu-stack">
+          <a id="btnCliente" href="cadastro-cliente.html" class="btn-vet" style="display: none;">
+            <i class="fa-solid fa-user-plus"></i> Cadastrar Cliente
+          </a>
+
+          <a id="btnPaciente" href="cadastro-paciente.html" class="btn-vet" style="display: none;">
+            <i class="fa-solid fa-paw"></i> Cadastrar Pet
+          </a>
+
+          <a id="btnProntuario" href="prontuario.html" class="btn-vet" style="display: none;">
+            <i class="fa-solid fa-file-medical"></i> Prontuário
+          </a>
+
+          <a id="btnExame" href="novo-exame.html" class="btn-vet" style="display: none;">
+            <i class="fa-solid fa-flask"></i> Novo Exame
+          </a>
+
+          <a id="btnFuncionario" href="cadastro-funcionario.html" class="btn-vet" style="display: none;">
+            <i class="fa-solid fa-id-card"></i> Novo Funcionário
+          </a>
+          
+          <a href="#" onclick="logout()" class="btn-vet btn-logout">
+            <i class="fa-solid fa-right-from-bracket"></i> Sair
+          </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/home.js"></script>
+</body>
+</html>

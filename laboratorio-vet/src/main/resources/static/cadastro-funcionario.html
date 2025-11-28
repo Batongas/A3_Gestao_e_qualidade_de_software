@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastrar Funcionário - LabVet</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css" /> </head>
+
+<body>
+  <div style="position: absolute; top: 20px; left: 20px;">
+      <a href="home.html" class="btn-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+  </div>
+
+  <div class="page-center">
+    <div class="card-vet">
+      <div class="card-header-vet">
+        <i class="fa-solid fa-user-plus"></i>
+        <h2>Novo Funcionário</h2>
+      </div>
+
+      <input id="nome" class="input-vet" placeholder="Nome Completo" />
+      
+      <select id="cargo" class="input-vet">
+          <option value="" disabled selected>Selecione o Cargo</option>
+          <option value="Veterinário">Veterinário</option>
+          <option value="Recepcionista">Recepcionista</option>
+      </select>
+
+      <input id="crmv" class="input-vet" placeholder="CRMV (Deixe vazio se for Recepcionista)" />
+      
+      <input id="login" class="input-vet" placeholder="Login de Acesso" />
+      <input id="senha" type="password" class="input-vet" placeholder="Senha Inicial" />
+
+      <button class="btn-vet" onclick="cadastrar()">Cadastrar</button>
+
+      <div id="msg" class="msg"></div>
+    </div>
+  </div>
+
+  <script src="js/cadastro-funcionario.js"></script>
+</body>
+</html>

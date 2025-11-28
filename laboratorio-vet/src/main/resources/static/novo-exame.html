@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Novo Exame - LabVet</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  
+  <a href="home.html" class="btn-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+
+  <div class="page-center">
+    <div class="card-vet" style="max-width: 600px;"> <div class="card-header-vet">
+        <i class="fa-solid fa-flask"></i>
+        <h2>Lançar Exame</h2>
+      </div>
+
+      <input class="input-vet" id="tipo" placeholder="Tipo do Exame (Ex: Hemograma)" />
+      
+      <div class="form-row">
+          <input class="input-vet" id="idPaciente" type="number" placeholder="ID Paciente" />
+          <input class="input-vet" id="idFuncionario" type="number" placeholder="ID Médico" />
+      </div>
+
+      <input class="input-vet" id="data" type="text" disabled style="background-color: #f9f9f9; cursor: not-allowed;" />
+      
+      <textarea class="input-vet" id="resultado" placeholder="Digite os resultados clínicos aqui..."></textarea>
+
+      <button class="btn-vet">Salvar Exame</button>
+
+      <div id="msg" class="msg"></div>
+    </div>
+  </div>
+
+  <script src="js/novo-exame.js"></script>
+  
+  <script>
+      const now = new Date();
+      document.getElementById('data').value = now.toLocaleString('pt-BR');
+  </script>
+</body>
+</html>
